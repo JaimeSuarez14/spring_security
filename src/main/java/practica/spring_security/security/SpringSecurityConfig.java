@@ -37,6 +37,7 @@ public class SpringSecurityConfig {
 		return httpSecurity
 				.authorizeHttpRequests( (authorize)-> authorize
 						.requestMatchers(HttpMethod.POST, "/api/auth/register").permitAll()
+						.requestMatchers(HttpMethod.POST, "/api/users/{id}/role").hasRole("ADMIN")
 						.requestMatchers(HttpMethod.POST, "/api/courses").hasRole("TEACHER")
 						.anyRequest().authenticated())
 						.addFilter(jwtAuthenticationFilter)
